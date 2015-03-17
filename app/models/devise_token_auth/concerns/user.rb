@@ -198,9 +198,9 @@ module DeviseTokenAuth::Concerns::User
   end
 
   def token_validation_response
-    self.as_json(except: [
-      :tokens, :created_at, :updated_at
-    ])
+    self.as_json(except: [:tokens, :created_at, :updated_at], 
+      include: {subscribed_channels: {only: [:id, :name, :user_id]}
+    })
   end
 
 
